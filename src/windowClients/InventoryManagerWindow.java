@@ -1,6 +1,7 @@
 package windowClients;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,46 +24,56 @@ public class InventoryManagerWindow {
 		this.marketInventory = marketInventory;
 		this.productsList.setText(marketInventory.getProducts().toString());
 	}
-	
+		
 	public void generateManagerWindow(){
 		//setting JFrame for inventory management window client
 		JFrame frame = new JFrame("Controle de estoque do mercado");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
-		frame.setSize(900, 700);
+		frame.setSize(900, 500);
 		
 		//JPanel for product fields
-		JPanel productPanel = new JPanel();
-		productPanel.setBounds(0, 0, 900, 500);
-		productPanel.setBackground(Color.GRAY);
+//		JPanel productPanel = new JPanel();
+//		productPanel.setBounds(0, 0, 900, 500);
+//		productPanel.setBackground(Color.GRAY);
 		
+		//button for adding new products
+		JButton addButton = new JButton("Adicionar");
+		addButton.addActionListener(e -> {
+			if(this.textFieldName.getText() != null && this.textFieldValue.getText() != null) {
+				this.marketInventory.getProducts()
+					.add(new Product(this.textFieldName.getText(), Float.parseFloat(this.textFieldValue.getText())));
+					this.marketInventory.notifySubscribers();
+					this.productsList.setText(marketInventory.getProducts().toString());
+			}
+		});
+
 		//labels
 		JLabel nameLabel = new JLabel("Nome:");
 		JLabel valueLabel = new JLabel("valor:");
 		JLabel productsDisplay = new JLabel("Produtos:");
 		
-		//button for adding new products
-		JButton addButton = new JButton("Adicionar");
-		 addButton.addActionListener(e -> {
-			 if(this.textFieldName.getText() != null && this.textFieldValue.getText() != null) {
-				 this.marketInventory.getProducts()
-				 	.add(new Product(this.textFieldName.getText(), Float.parseFloat(this.textFieldValue.getText())));
-				 this.marketInventory.notifySubscribers();
-				 this.productsList.setText(marketInventory.getProducts().toString());
-			 }
-	     });
+		//configurating panels
+		JPanel namePanel = new JPanel();
+		namePanel.setBounds(0, 0, 400, 100);
+		namePanel.add(nameLabel);
+		textFieldName.setPreferredSize(new Dimension(100, 26));
+		namePanel.add(textFieldName);
 		
-		//adding labels and inputs to the panel
-		productPanel.add(nameLabel);
-		productPanel.add(textFieldName);
-		productPanel.add(valueLabel);
-		productPanel.add(textFieldValue);
-		productPanel.add(addButton);
-		productPanel.add(productsDisplay);
-		productPanel.add(productsList);
+		JPanel valuePanel = new JPanel();
+		valuePanel.setBounds(0, 100, 400, 100);
+		valuePanel.add(valueLabel);
+		textFieldValue.setPreferredSize(new Dimension(100, 26));
+		valuePanel.add(textFieldValue);
 		
-		//adding frame to the JPanel
-		frame.add(productPanel);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(addButton);
+		buttonPanel.setBounds(0, 200, 400, 100);
+		
+		//adding labels and inputs to the frame
+		frame.add(namePanel);
+		frame.add(valuePanel);
+		frame.add(buttonPanel);
 	}
 }
