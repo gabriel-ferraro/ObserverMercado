@@ -6,7 +6,6 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import domain.Product;
 import subscribers.Cashier;
@@ -15,7 +14,7 @@ import subscribers.Cashier;
 public class CashierWindowClient extends JFrame {
 
 	//private JTextField textFieldProducts = new JTextField(); //mostra a lista de produtos do caixa
-	private JList productsList = new JList<>();
+	private JList<Product> productsList = new JList<>();
 	
 	public void generateCashierWindow(Cashier cashier) {
 		
@@ -39,10 +38,10 @@ public class CashierWindowClient extends JFrame {
 	}
 	
 	public List<Product> getProductsList() {
-		return this.productsList;
+		return this.productsList.getSelectedValuesList(); //corrigir em cashier
 	}
 
-	public void setProductList(JList<Product> products) {
-		this.productsList = products;
+	public void setProductList(List<Product> products) {
+		this.productsList.setSelectedValue(products, true);
 	}
 }
