@@ -1,6 +1,5 @@
 package windowClients;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
@@ -31,12 +30,7 @@ public class InventoryManagerWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
-		frame.setSize(900, 500);
-		
-		//JPanel for product fields
-//		JPanel productPanel = new JPanel();
-//		productPanel.setBounds(0, 0, 900, 500);
-//		productPanel.setBackground(Color.GRAY);
+		frame.setSize(400, 300);
 		
 		//button for adding new products
 		JButton addButton = new JButton("Adicionar");
@@ -51,27 +45,30 @@ public class InventoryManagerWindow {
 
 		//labels
 		JLabel nameLabel = new JLabel("Nome:");
-		JLabel valueLabel = new JLabel("valor:");
-		JLabel productsDisplay = new JLabel("Produtos:");
+		JLabel valueLabel = new JLabel("Valor:");
 		
 		//configurating panels
+		JLabel indicatorLabel = new JLabel("Insira um novo produto");
+		indicatorLabel.setBounds(150, 10, 400, 26);
+
 		JPanel namePanel = new JPanel();
-		namePanel.setBounds(0, 0, 400, 100);
+		namePanel.setBounds(0, 50, 400, 50);
 		namePanel.add(nameLabel);
-		textFieldName.setPreferredSize(new Dimension(100, 26));
+		textFieldName.setPreferredSize(new Dimension(150, 26));
 		namePanel.add(textFieldName);
 		
 		JPanel valuePanel = new JPanel();
 		valuePanel.setBounds(0, 100, 400, 100);
 		valuePanel.add(valueLabel);
-		textFieldValue.setPreferredSize(new Dimension(100, 26));
+		textFieldValue.setPreferredSize(new Dimension(150, 26));
 		valuePanel.add(textFieldValue);
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(addButton);
 		buttonPanel.setBounds(0, 200, 400, 100);
-		
+
 		//adding labels and inputs to the frame
+		frame.add(indicatorLabel);
 		frame.add(namePanel);
 		frame.add(valuePanel);
 		frame.add(buttonPanel);

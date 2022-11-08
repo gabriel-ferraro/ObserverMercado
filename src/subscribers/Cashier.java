@@ -12,7 +12,7 @@ public class Cashier implements ISubscriber {
 	private List<Product> cashierProducts;
 	public CashierWindowClient cashierWindow;
 	
-	public Cashier(IPublisher publisher, CashierWindowClient cashierWindow){
+	public Cashier(IPublisher publisher, CashierWindowClient cashierWindow) {
 		this.publisher = publisher;
 		this.publisher.add(this);
 		this.cashierWindow = cashierWindow;
@@ -21,7 +21,7 @@ public class Cashier implements ISubscriber {
 	@Override
 	public void update(List<Product> products) {
 		this.setCashierProducts(products);
-		this.cashierWindow.getTextFieldProducts().setText(products.toString());
+		this.cashierWindow.getProductsList().setProductList(products); // corrigir
 	}
 
 	public List<Product> getCashierProducts() {
