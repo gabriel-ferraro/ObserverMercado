@@ -21,7 +21,7 @@ public class Cashier implements ISubscriber {
 	@Override
 	public void update(List<Product> products) {
 		this.setCashierProducts(products);
-		this.cashierWindow.getProductsList().setProductList(products); // corrigir
+		this.cashierWindow.setProductList(products); // corrigir
 	}
 
 	public List<Product> getCashierProducts() {

@@ -3,9 +3,9 @@ package windowClients;
 import java.awt.Color;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JPanel;
 
 import domain.Product;
 import subscribers.Cashier;
@@ -14,7 +14,10 @@ import subscribers.Cashier;
 public class CashierWindowClient extends JFrame {
 
 	//private JTextField textFieldProducts = new JTextField(); //mostra a lista de produtos do caixa
-	private JList<Product> productsList = new JList<>();
+	private Product[] productList;
+	
+	private DefaultListModel<String> model = new DefaultListModel<>();
+	private JList<String> productListDisplay = new JList<>(model);
 	
 	public void generateCashierWindow(Cashier cashier) {
 		
@@ -25,23 +28,26 @@ public class CashierWindowClient extends JFrame {
 		frame.setVisible(true);
 		frame.setSize(500, 500);
 		
-		//JPanel for products
-		JPanel productPanel = new JPanel();
-		productPanel.setBounds(0, 0, 500, 500);
-		productPanel.setBackground(Color.LIGHT_GRAY);
-		
 		//add product array to JPanel
-		productPanel.add(productsList);
+		this.productListDisplay.setLayout(null);
+		this.productListDisplay.setVisible(true);
+		this.productListDisplay.setBounds(0, 0, 500, 500);
+		this.productListDisplay.setBackground(Color.lightGray);
 		
 		//adding frame to the JPanel
-		frame.add(productPanel);
+		frame.add(productListDisplay);
 	}
 	
-	public List<Product> getProductsList() {
-		return this.productsList.getSelectedValuesList(); //corrigir em cashier
+	public Product[] getProductsList() {
+		return this.productList;
 	}
 
 	public void setProductList(List<Product> products) {
-		this.productsList.setSelectedValue(products, true);
+		this.productList = products.toArray(new Product[0]);	
+		for(int i=0; i < productList.length; i++) {
+			if(!model.contains(productList[i].toString())) {
+				this.model.addElement(productList[i].toString());
+			}
+		}
 	}
 }

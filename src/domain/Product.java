@@ -11,6 +11,6 @@ public class Product {
 	}
 	
 	public String toString() {
-		return this.name;
+		return this.name + "  R$" + this.value;
 	}
 }
