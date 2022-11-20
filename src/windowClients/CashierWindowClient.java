@@ -13,7 +13,6 @@ import subscribers.Cashier;
 @SuppressWarnings("serial")
 public class CashierWindowClient extends JFrame {
 
-	//private JTextField textFieldProducts = new JTextField(); //mostra a lista de produtos do caixa
 	private Product[] productList;
 	
 	private DefaultListModel<String> model = new DefaultListModel<>();
