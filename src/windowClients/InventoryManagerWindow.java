@@ -26,7 +26,7 @@ public class InventoryManagerWindow {
 		
 	public void generateManagerWindow(){
 		//setting JFrame for inventory management window client
-		JFrame frame = new JFrame("(mover tamanho da janela para desbugar) Controle de estoque do mercado");
+		JFrame frame = new JFrame("Controle de estoque do mercado");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
